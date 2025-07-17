@@ -1,0 +1,20 @@
+{
+  "name": "schedule1-brute-force",
+  "version": "1.0.0",
+  "description": "Brute-force tool designed to find the most profitable mix in Schedule I",
+  "homepage": "https://github.com/4samsamAC/Schedule1-Brute-Force#readme",
+  "bugs": {
+    "url": "https://github.com/4samsamAC/Schedule1-Brute-Force/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/4samsamAC/Schedule1-Brute-Force.git"
+  },
+  "license": "ISC",
+  "author": "4samsamAC",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
