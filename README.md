@@ -45,5 +45,5 @@ This will return the most profitable mix using **Green Crack** as the base with 
 
 ## TODO
 
-* [ ] Validate user input (prevent negative numbers and out-of-range values)
+* [X] Validate user input (prevent negative numbers and out-of-range values)
 * [ ] Add support for pre-mixed substances as input

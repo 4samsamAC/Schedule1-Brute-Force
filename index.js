@@ -35,12 +35,15 @@ function newMix(seed = 0, base = 0, minLength = 1) {
     return [mix, effects, totalMultiplier, finalPrice, totalCost, profit];
 }
 
-function main() {
+function main(base = 0, substances = 1) {
+    if (base < 0 || base >= baseList.length) base = 0;
+    if (substances < 1) substances = 1;
+
     let mostProfitableMix = [0, [],
         [], 0, 0, 0, 0
     ];
 
-    let maxSeed = substanceList.length ** parseInt(substances);
+    let maxSeed = substanceList.length ** substances;
 
     for (let i = 0; i < maxSeed; i++) {
         const [mix, effects, totalMultiplier, finalPrice, totalCost, profit] = newMix(i, base, substances);
@@ -318,4 +321,4 @@ const effectRules = {
 const base = process.argv[2] || 0;
 const substances = process.argv[3] || 1;
 
-main();
+main(parseInt(base), parseInt(substances));
