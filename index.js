@@ -1,3 +1,8 @@
+const {
+    Worker
+} = require('worker_threads');
+const os = require('os');
+
 function newMix(seed = 0, base = 0, minLength = 1) {
     const basePrice = basePrices[baseList[base]];
     let effects = [baseEffects[baseList[base]]];
@@ -315,8 +320,19 @@ const effectRules = {
         "Shrinking": "Munchies"
     }
 };
+function runWorkers(base, substances) {
+    if (base < 0 || base >= baseList.length) base = 0;
+    if (substances < 1) substances = 1;
+
+    const numThreads = os.cpus().length;
+    const maxSeed = substanceList.length ** substances;
+    const chunk = Math.ceil(maxSeed / numThreads);
+    let bestMix = [0, [],
+        [], 0, 0, 0, 0
+    ];
+}
 
 const base = process.argv[2] || 0;
 const substances = process.argv[3] || 1;
 
-main(parseInt(base), parseInt(substances));
+runWorkers(parseInt(base), parseInt(substances));
