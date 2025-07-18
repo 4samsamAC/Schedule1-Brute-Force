@@ -37,7 +37,7 @@ function main() {
         [], 0, 0, 0, 0
     ];
 
-    let maxSeed = substanceList.length * substances;
+    let maxSeed = substanceList.length ** parseInt(substances);
 
     for (let i = 0; i < maxSeed; i++) {
         const [mix, effects, totalMultiplier, finalPrice, totalCost, profit] = newMix(i, base, substances);
