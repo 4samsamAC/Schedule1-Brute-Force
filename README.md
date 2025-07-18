@@ -46,5 +46,6 @@ This will return the most profitable mix using **Green Crack** as the base with 
 ## TODO
 
 * [X] Validate user input (prevent negative numbers and out-of-range values)
+* [ ] Multy-threading
 * [ ] Add support for pre-mixed substances as input
-* [ ] Remove the NaN in the Effects sections.
+* [ ] Remove the NaN in the Effects sections
