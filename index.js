@@ -65,7 +65,7 @@ function main(base = 0, substances = 1) {
     console.log(`\x1B[32mFinal Price: $${mostProfitableMix[4].toFixed(2)}`);
     console.log(`\x1B[31mTotal Cost: $${mostProfitableMix[5].toFixed(2)}`);
     console.log(`\x1B[36mProfit: $${mostProfitableMix[6].toFixed(2)}\x1B[0m`);
-    console.log(`Seed: ${mostProfitableMix[0]}`);
+    console.log(`Seed: ${mostProfitableMix[0]}/${maxSeed - 1}`);
 }
 
 const substanceList = [
