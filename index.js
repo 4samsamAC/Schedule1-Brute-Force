@@ -1,25 +1,28 @@
-function newMix(seed = 0, base = 0, w = 1) {
+function newMix(seed = 0, base = 0, minLength = 1) {
     const basePrice = basePrices[baseList[base]];
     let effects = [baseEffects[baseList[base]]];
-    const count = [Math.floor(seed / substanceList.length), seed % substanceList.length];
     const mix = [];
-    let price = 0;
-    let sell = 0;
+    const subL = substanceList.length;
 
     mix.push(baseList[base]);
 
-    for (let i = 0; i < w; i++) {
-        mix.push(substanceList[count[1]]);
-        price += substancePrices[substanceList[count[1]]];
-        const rules = effectRules[substanceList[count[1]]] || {};
+    while (seed > 0) {
+        mix.push(substanceList[seed % subL]);
+        const rules = effectRules[substanceList[seed % subL]] || {};
         effects = effects.map(eff => rules[eff] || eff);
-        const defaultEffect = defaultEffectMap[substanceList[count[1]]];
+        const defaultEffect = defaultEffectMap[substanceList[seed % subL]];
         if (defaultEffect && effects.length < 8 && !effects.includes(defaultEffect)) {
             effects.push(defaultEffect);
         }
-        count[1] = (count[1] + 1) % substanceList.length;
-        if (count[1] === 0) {
-            count[0]++;
+        seed = Math.floor(seed / subL);
+    }
+    while (mix.length < minLength) {
+        mix.push(substanceList[0]);
+        const rules = effectRules[substanceList[seed % subL]] || {};
+        effects = effects.map(eff => rules[eff] || eff);
+        const defaultEffect = defaultEffectMap[substanceList[seed % subL]];
+        if (defaultEffect && effects.length < 8 && !effects.includes(defaultEffect)) {
+            effects.push(defaultEffect);
         }
     }
 
