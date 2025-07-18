@@ -1,10 +1,8 @@
 function newMix(seed = 0, base = 0, minLength = 1) {
     const basePrice = basePrices[baseList[base]];
     let effects = [baseEffects[baseList[base]]];
-    const mix = [];
+    const mix = [baseList[base]];
     const subL = substanceList.length;
-
-    mix.push(baseList[base]);
 
     while (seed > 0) {
         mix.push(substanceList[seed % subL]);
