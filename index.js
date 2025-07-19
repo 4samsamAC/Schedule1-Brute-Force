@@ -48,8 +48,21 @@ function main(base = 0, substances = 1) {
     ];
 
     let maxSeed = substanceList.length ** substances;
+    const startTime = Date.now();
+    let lastTime = startTime;
+    let lastSeed = 0;
 
     for (let i = 0; i < maxSeed; i++) {
+        if (i % 50000 === 0 && i > 0) {
+            const now = Date.now();
+            const elapsed = (now - startTime) / 1000; // en secondes
+            const seedsPerSec = i / elapsed;
+            const remaining = maxSeed - i;
+            const estTimeLeft = remaining / seedsPerSec;
+            console.log(
+                `Progress: \x1B[34m${i}/${maxSeed}\x1B[0m | \x1B[1m${seedsPerSec.toFixed(2)} seeds/s\x1B[0m | Time left: \x1B[31m${estTimeLeft.toFixed(1)}s\x1B[0m\nCurrent best mix: [Seed: \x1B[32m${mostProfitableMix[0]}\x1B[0m] \x1B[33m${mostProfitableMix[1].join(', ')}\nEffects: \x1B[35m${mostProfitableMix[2].join(', ')}\x1B[0m | Profit: \x1B[36m${mostProfitableMix[6].toFixed(2)}\x1B[0m`
+            );
+        }
         const [mix, effects, totalMultiplier, finalPrice, totalCost, profit] = newMix(i, base, substances);
         if (profit > mostProfitableMix[6]) {
             mostProfitableMix = [
@@ -334,6 +347,20 @@ function runWorkers(base, substances) {
     let bestMix = [0, [],
         [], 0, 0, 0, 0
     ];
+    const startTime = Date.now();
+    let progressInterval = setInterval(() => {
+        const now = Date.now();
+        const elapsed = (now - startTime) / 1000;
+        const seedsDone = progressByWorker.reduce((a, b) => a + b, 0);
+        const seedsPerSec = seedsDone / elapsed;
+        const remaining = maxSeed - seedsDone;
+        const estTimeLeft = seedsPerSec > 0 ? remaining / seedsPerSec : 0;
+        const percentByWorker = progressByWorker.map(p => (p / chunk) * 100);
+        console.log(
+            `Progress: \x1B[34m${Math.min(seedsDone, maxSeed)}/${maxSeed}\x1B[0m | \x1B[1m${seedsPerSec.toFixed(2)} seeds/s\x1B[0m | Time left: \x1B[31m${estTimeLeft.toFixed(1)}s\x1B[0m\nCurrent best mix: [Seed: \x1B[32m${bestMix[0]}\x1B[0m] \x1B[33m${bestMix[1].join(', ')}\nEffects: \x1B[35m${bestMix[2].join(', ')}\x1B[0m | Profit: \x1B[36m${bestMix[6].toFixed(2)}\x1B[0m\nLoad: ${percentByWorker.map((p, i) => `\x1B[34mThread ${i + 1}\x1B[0m: \x1B[31m${p.toFixed(2)}%\x1B[0m`).join(', ')}`
+        );
+    }, 2000);
+
     let progressByWorker = Array(numThreads).fill(0);
 
     for (let t = 0; t < numThreads; t++) {
