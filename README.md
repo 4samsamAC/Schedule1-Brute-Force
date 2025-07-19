@@ -44,8 +44,3 @@ This will return the most profitable mix using **Green Crack** as the base with 
 * [Schedule1 Calculator](https://schedule1-calculator.com/)
 
 ## TODO
-
-* [X] Validate user input (prevent negative numbers and out-of-range values)
-* [X] Multy-threading
-* [X] Remove the NaN in the Effects sections
-* [ ] Add support for pre-mixed substances as input
