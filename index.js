@@ -5,7 +5,8 @@ const os = require('os');
 
 function newMix(seed = 0, base = 0, minLength = 1) {
     const basePrice = basePrices[baseList[base]];
-    let effects = [baseEffects[baseList[base]]];
+    let effects = [];
+    if (baseEffects[baseList[base]] !== null) effects.push(baseEffects[baseList[base]]);
     const mix = [baseList[base]];
     const subL = substanceList.length;
 
@@ -149,8 +150,8 @@ const baseEffects = {
     "Sour Diesel": "Refreshing",
     "Green Crack": "Energizing",
     "Grand Daddy Purp": "Sedating",
-    "Cocaine": NaN,
-    "Meth": NaN
+    "Cocaine": null,
+    "Meth": null
 };
 
 const defaultEffectMap = {
