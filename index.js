@@ -3,6 +3,13 @@ const {
 } = require('worker_threads');
 const os = require('os');
 
+const baseList = [
+    "OG Kush", "Sour Diesel", "Green Crack", "Grand Daddy Purp", "Cocaine", "Meth"
+];
+const substanceList = [
+    "Cuke", "Flu Medicine", "Gasoline", "Donut", "Energy Drink", "Mouth Wash", "Motor Oil", "Banana", "Chili", "Iodine", "Paracetamol", "Viagra", "Horse Semen", "Mega Bean", "Addy", "Battery"
+];
+
 function runWorkers(base, substances) {
     if (base < 0 || base >= baseList.length) base = 0;
     if (substances < 1) substances = 1;
