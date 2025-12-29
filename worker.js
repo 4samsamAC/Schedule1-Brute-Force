@@ -38,13 +38,9 @@ function newMix(seed = 0, base = 0, minLength = 1) {
     return [mix, effects, totalMultiplier, finalPrice, totalCost, profit];
 }
 
-const substanceList = [
-    "Cuke", "Flu Medicine", "Gasoline", "Donut", "Energy Drink", "Mouth Wash", "Motor Oil", "Banana", "Chili", "Iodine", "Paracetamol", "Viagra", "Horse Semen", "Mega Bean", "Addy", "Battery"
-];
+const substanceList = ["Cuke", "Flu Medicine", "Gasoline", "Donut", "Energy Drink", "Mouth Wash", "Motor Oil", "Banana", "Chili", "Iodine", "Paracetamol", "Viagra", "Horse Semen", "Mega Bean", "Addy", "Battery"];
 
-const baseList = [
-    "OG Kush", "Sour Diesel", "Green Crack", "Grand Daddy Purp", "Cocaine", "Meth"
-];
+const baseList = ["OG Kush", "Sour Diesel", "Green Crack", "Grand Daddy Purp", "Cocaine", "Meth", "Shroom"];
 
 const effectMultipliers = {
     "Anti-Gravity": 0.54,
@@ -108,7 +104,8 @@ const basePrices = {
     "Green Crack": 35,
     "Grand Daddy Purp": 35,
     "Cocaine": 150,
-    "Meth": 70
+    "Meth": 70,
+    "Shroom": 65
 };
 
 const baseEffects = {
@@ -117,7 +114,8 @@ const baseEffects = {
     "Green Crack": "Energizing",
     "Grand Daddy Purp": "Sedating",
     "Cocaine": null,
-    "Meth": null
+    "Meth": null,
+    "Shroom": null
 };
 
 const defaultEffectMap = {

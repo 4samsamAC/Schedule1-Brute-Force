@@ -34,6 +34,7 @@ This will return the most profitable mix using **Green Crack** as the base with 
 * `3`: Grand Daddy Purp
 * `4`: Cocaine
 * `5`: Meth
+* `6`: Shroom
 
 ## Resources & Inspirations
 
@@ -44,3 +45,5 @@ This will return the most profitable mix using **Green Crack** as the base with 
 * [Schedule1 Calculator](https://schedule1-calculator.com/)
 
 ## TODO
+
+[ ] implementing CLI interaction with readline or inquirer
