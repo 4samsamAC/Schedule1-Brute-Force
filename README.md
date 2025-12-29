@@ -46,4 +46,4 @@ This will return the most profitable mix using **Green Crack** as the base with 
 
 ## TODO
 
-[ ] implementing CLI interaction with readline or inquirer
+- [ ] implementing CLI interaction with readline or inquirer
