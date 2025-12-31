@@ -46,4 +46,5 @@ This will return the most profitable mix using **Green Crack** as the base with 
 
 ## TODO
 
-- [ ] implementing CLI interaction with readline or inquirer
+- [x] implementing CLI interaction with readline or inquirer
+- [ ] adding gpu workers with gpu.js or other (not sure)

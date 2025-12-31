@@ -2,6 +2,7 @@ const {
     Worker
 } = require('worker_threads');
 const os = require('os');
+const readline = require('node:readline/promises');
 
 const baseList = ["OG Kush", "Sour Diesel", "Green Crack", "Grand Daddy Purp", "Cocaine", "Meth", "Shroom"];
 const substanceList = ["Cuke", "Flu Medicine", "Gasoline", "Donut", "Energy Drink", "Mouth Wash", "Motor Oil", "Banana", "Chili", "Iodine", "Paracetamol", "Viagra", "Horse Semen", "Mega Bean", "Addy", "Battery"];
@@ -69,7 +70,31 @@ function runWorkers(base, substances) {
     }
 }
 
-const base = process.argv[2] || 0;
-const substances = process.argv[3] || 1;
+async function askBase() {
+    const rl = readline.createInterface({
+        input: process.stdin,
+        output: process.stdout
+    });
+    console.log("Select a base:");
+    baseList.forEach((base, index) => {
+        console.log(`${index}: ${base}`);
+    });
+    const answer = await rl.question("Enter the number corresponding to your choice: ");
+    rl.close();
+    return answer || "0";
+}
+
+async function askSubs() {
+    const rl = readline.createInterface({
+        input: process.stdin,
+        output: process.stdout
+    });
+    const answer = await rl.question("Enter the number of substances to mix: ");
+    rl.close();
+    return answer || "1";
+}
+
+const base = process.argv[2] || await askBase();
+const substances = process.argv[3] || await askSubs();
 
 runWorkers(parseInt(base), parseInt(substances));
